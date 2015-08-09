@@ -11,7 +11,7 @@ public class Hero : MonoBehaviour {
 	bool mMouseDown;
 
 	public SpriteRenderer[] mActive;
-	bool mActiveSpellVisible;
+	public bool mActiveSpellVisible;
 	int mCountActiveSpell;
 	// Use this for initialization
 	void Start () {
@@ -52,29 +52,9 @@ public class Hero : MonoBehaviour {
 		}
 		LiveImg.transform.localScale = new Vector3 ((float)mLive/(float)mLiveMax,1,1);
 		ManaImg.transform.localScale = new Vector3 ((float)mMana/(float)mManaMax,1,1);
-
-		if (Input.touchCount == 1)
-		{
-			Vector3 wp = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
-			Vector2 touchPos = new Vector2(wp.x, wp.y);
-			if (HeroImg == Physics2D.OverlapPoint(touchPos))
-			{
-				SetActivateSpell(!mActiveSpellVisible);		
-			}
-		}
-		else if (Input.GetMouseButtonDown (0)) {	
-			//print ("ButtonDown");
-			RaycastHit hit;
-			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-			if (Physics.Raycast (ray,out hit) ){
-				if(hit.collider!=null)
-				//print ("ButtonDown");
-				SetActivateSpell(!mActiveSpellVisible);
-			} 
-		}
 	}
 
-	void SetActivateSpell(bool pActive)	{
+	public void SetActivateSpell(bool pActive)	{
 		if (!mMouseDown) {
 			mActiveSpellVisible = false;
 			for (int i=0; i<4; i++) {
