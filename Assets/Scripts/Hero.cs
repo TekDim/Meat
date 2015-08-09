@@ -78,7 +78,8 @@ public class Hero : MonoBehaviour {
 		if (!mMouseDown) {
 			mActiveSpellVisible = false;
 			for (int i=0; i<4; i++) {
-				mActive [i].enabled = false;
+				mActive[i].enabled = false;
+				mActive[i].transform.localPosition = new Vector3(mActive[i].transform.localPosition.x,mActive[i].transform.localPosition.y,400);
 			}
 			return;
 		}
@@ -87,11 +88,13 @@ public class Hero : MonoBehaviour {
 			for(int i=0;i<mCountActiveSpell;i++)
 			{
 				mActive[i].enabled=true;
+				mActive[i].transform.localPosition = new Vector3(mActive[i].transform.localPosition.x,mActive[i].transform.localPosition.y,0);
 			}
 		} else {
 			for(int i=0;i<4;i++)
 			{
 				mActive[i].enabled=false;
+				mActive[i].transform.localPosition = new Vector3(mActive[i].transform.localPosition.x,mActive[i].transform.localPosition.y,400);
 			}
 		}
 	}
