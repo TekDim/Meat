@@ -2,10 +2,11 @@
 using System.Collections;
 
 public class Scene : MonoBehaviour {
-	public Hero[] Heroes,Vrags;
+	public GameObject Heroes;
+	public GameObject Enemies;
 	// Use this for initialization
 	void Start () {
-	
+		
 	}
 	
 	// Update is called once per frame
@@ -24,11 +25,15 @@ public class Scene : MonoBehaviour {
 			RaycastHit hit;
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			if (Physics.Raycast (ray,out hit) ){
-				if(hit.collider!=null)
-					for(int i=0;i<Heroes.Length;i++)
-				{
-					Heroes[i].SetActivateSpell(!Heroes[i].mActiveSpellVisible);
-					Vrags[i].SetActivateSpell(!Vrags[i].mActiveSpellVisible);
+				if(hit.collider!=null) {
+					foreach (Transform child in Enemies.transform) {
+						GameObject tHero = child.gameObject;
+						tHero.GetComponent<Hero>().SetActivateSpell(!tHero.GetComponent<Hero>().mActiveSpellVisible);
+					}
+					foreach (Transform child in Heroes.transform) {
+						GameObject tHero = child.gameObject;
+						tHero.GetComponent<Hero>().SetActivateSpell(!tHero.GetComponent<Hero>().mActiveSpellVisible);
+					}
 				}
 			} 
 		}
