@@ -10,7 +10,7 @@ public class Hero : MonoBehaviour {
 	float mHeroMagicArmor=0.0f,mPredmetMagicArmor=0.0f,mAOEmagicArmor=0.0f,mUpMagicDamage=0.0f;
 	bool mMouseDown;
 
-	public SpriteRenderer[] mActive;
+	public ActiveButton[] mActive;
 	public bool mActiveSpellVisible;
 	int mCountActiveSpell;
 	// Use this for initialization
@@ -58,8 +58,7 @@ public class Hero : MonoBehaviour {
 		if (!mMouseDown) {
 			mActiveSpellVisible = false;
 			for (int i=0; i<4; i++) {
-				mActive[i].enabled = false;
-				mActive[i].transform.localPosition = new Vector3(mActive[i].transform.localPosition.x,mActive[i].transform.localPosition.y,400);
+				mActive[i].SetVisible(false);
 			}
 			return;
 		}
@@ -67,14 +66,12 @@ public class Hero : MonoBehaviour {
 		if (mActiveSpellVisible) {
 			for(int i=0;i<mCountActiveSpell;i++)
 			{
-				mActive[i].enabled=true;
-				mActive[i].transform.localPosition = new Vector3(mActive[i].transform.localPosition.x,mActive[i].transform.localPosition.y,0);
+				mActive[i].SetVisible(true);
 			}
 		} else {
 			for(int i=0;i<4;i++)
 			{
-				mActive[i].enabled=false;
-				mActive[i].transform.localPosition = new Vector3(mActive[i].transform.localPosition.x,mActive[i].transform.localPosition.y,400);
+				mActive[i].SetVisible(false);
 			}
 		}
 	}
