@@ -25,7 +25,7 @@ public class Scene : MonoBehaviour {
 			RaycastHit hit;
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			if (Physics.Raycast (ray,out hit) ){
-				if(hit.collider!=null) {
+				if(hit.collider.tag!="Attack") {
 					foreach (Transform child in Enemies.transform) {
 						GameObject tHero = child.gameObject;
 						tHero.GetComponent<Hero>().SetActivateSpell(!tHero.GetComponent<Hero>().mActiveSpellVisible);
