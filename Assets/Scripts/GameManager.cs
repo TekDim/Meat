@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour {
 			target.transform.name = userid;
 			
 			// Uncoment the line below to use the Development Server
-			//client.Multiplayer.DevelopmentServer = new ServerEndpoint("localhost",8184);
+			client.Multiplayer.DevelopmentServer = new ServerEndpoint("localhost",8184);
 			
 			//Create or join the room 
 			client.Multiplayer.CreateJoinRoom(
